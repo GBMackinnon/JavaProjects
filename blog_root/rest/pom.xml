@@ -2,44 +2,45 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-        
     <parent>
         <groupId>com.duncan</groupId>
-        <artifactId>BlogRoot</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <artifactId>blog_root</artifactId>
+        <version>1.0.0-SNAPSHOT</version>    
     </parent>
+    
+    <!-- This specififies the logicical folder stucture in M2 repository for when it is built
+    It can map with java package name in the src but it does not need to -->
+    <groupId>com.duncan.rest</groupId>
+    <artifactId>rest</artifactId>
+    <name>rest</name>
         
-    <groupId>com.duncan.jpa</groupId>
-    <artifactId>JPA</artifactId>
-    <name>JPA</name>
+    <!-- Use WAR packaing to run in Tomcat or on cmd line -->
+    <packaging>war</packaging>
         
-    <packaging>jar</packaging>
-        
-    <description>Demo project for Spring Boot</description>
+    <description>Spring Boot blog application rest api</description>
     <properties>
         <java.version>17</java.version>
     </properties>
+    
     <dependencies>
+	
+        <!-- My JPA dependency is required by REST project -->
+        <dependency>
+            <groupId>com.duncan.jpa</groupId>
+            <artifactId>jpa</artifactId>
+        </dependency>
+			
+        <!-- Spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <!-- Needed for IDE development to reload code on the fly.  
+            but not packaged into the JAR! -->           
             <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -47,11 +48,25 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Lombok bean annotations for GET/SET etc -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+		
     </dependencies>
 
     <build>
+        <!-- Use name of artifact and get rif snaphot or release label in the name! -->
+        <finalName>${artifactId}</finalName>
         <plugins>
             <plugin>
+                <!-- Make FAT jar to include all dependencies.
+                Run on cmd line as 
+                java -jar <JAR NAME> 
+                -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
