@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.duncan</groupId>
+        <groupId>com.duncan.blog</groupId>
         <artifactId>blog_root</artifactId>
         <version>1.0.0-SNAPSHOT</version>    
     </parent>
     
     <!-- This specififies the logicical folder stucture in M2 repository for when it is built
     It can map with java package name in the src but it does not need to -->
-    <groupId>com.duncan.rest</groupId>
+    <groupId>com.duncan.blog.rest</groupId>
     <artifactId>rest</artifactId>
     <name>rest</name>
         
@@ -26,7 +26,7 @@
 	
         <!-- My JPA dependency is required by REST project -->
         <dependency>
-            <groupId>com.duncan.jpa</groupId>
+            <groupId>com.duncan.blog.jpa</groupId>
             <artifactId>jpa</artifactId>
         </dependency>
 			

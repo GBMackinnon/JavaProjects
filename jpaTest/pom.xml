@@ -2,72 +2,61 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.duncan.blog</groupId>
-        <artifactId>blog_root</artifactId>
-        <version>1.0.0-SNAPSHOT</version>    
-    </parent>
         
-    <groupId>com.duncan.blog.jpa</groupId>
-    <artifactId>jpa</artifactId>
-    <name>jpa</name>
+    <groupId>com.duncan.jpaTest</groupId>
+    <artifactId>jpaTest</artifactId>
+    <name>jpaTest</name>
+    <version>1.0-SNAPSHOT</version>
         
     <packaging>jar</packaging>
         
     <description>Spring JPA project BLOG database</description>
     
+    <properties>
+        <java-version>17</java-version>
+    </properties>
+    
     <dependencies>
-        <!-- Add SpringBoot depdendencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId> 
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
                        
         <!-- Maria DB Needed for RUNTIME but not for compiling!  -->
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
             <scope>runtime</scope>
+            <version>3.1.2</version>
         </dependency>
-           				
-        <!-- Lombok bean annotations for GET/SET etc    -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        
+           		                          
+        <!-- Test -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>          
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.2</version>            
             <scope>test</scope>
         </dependency>    
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.2</version>            
             <scope>test</scope>
         </dependency>                                     		
     </dependencies>
   
     <build>
         <plugins>
+            <plugin>            
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                    <release>${java-version}</release>
+                    
+                </configuration>
+            </plugin>
             <!-- Make skinny JAR, not FAT jar 
 <plugin>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-maven-plugin</artifactId>
+c
     <configuration>
         <excludes>
             <exclude>
