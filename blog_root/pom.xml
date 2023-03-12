@@ -57,6 +57,7 @@
                 <version>1.18.26</version>
             </dependency>
           
+            <!-- JUnit -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
